@@ -80,18 +80,6 @@ You: test it / send agents
 - **No upsell** — T2/T3 only suggested when T1 finds something genuinely concerning
 - **Context before casting** — the skill gathers backstory and intent before proposing perspectives, to avoid shallow assumption-filled analysis
 
-## Example Session
-
-**Subject:** An AI-assisted osu! beatmap mapping IDE
-
-**T1 found:** 6 personas ranging from hostile purists to enthusiastic newbies. Identified that the AI features (the entire value prop) were hidden behind developer-facing config, and the target audience was wrong for 2 of the personas.
-
-**T3 dispatched:** 6 agents (UI auditor, doc tester, code reviewer, security analyst, performance auditor, researcher). Found:
-- A critical silent failure in the most-used AI operation (`place_slider` had no frontend handler)
-- An unauthenticated HTTP server with CORS `*` allowing any website to read/write files
-- 40 total action items, prioritized with effort estimates (~46 hours total)
-- Competitive research confirming no other tool in the space combines AI generation + editing
-
 ## Requirements
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI, desktop app, or IDE extension
