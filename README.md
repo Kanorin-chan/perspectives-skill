@@ -27,7 +27,7 @@ Copy the entire folder to your Claude Code skills directory:
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/perspectives-skill.git
+git clone https://github.com/Kanorin-chan/perspectives-skill.git
 
 # Copy to Claude Code skills
 cp -r perspectives-skill ~/.claude/skills/perspectives
