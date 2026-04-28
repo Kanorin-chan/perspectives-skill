@@ -9,9 +9,27 @@ You will receive:
 - **Subject**: What UI/interface to evaluate
 - **Context**: What the UI is supposed to help users do
 
+## Ground Truth Requirement
+
+<HARD-GATE>
+If the subject is a **live URL** (deployed app, dev server, any reachable http/https endpoint):
+- You MUST call `mcp__chrome-devtools__navigate_page` to load it
+- You MUST call `mcp__chrome-devtools__take_screenshot` BEFORE writing any "First Impression" or "Walkthrough" content
+- You MUST cite the screenshot path/identifier in your report
+- For interactive flows, take screenshots at each step you walk through
+
+If chrome-devtools MCP tools are not available in your environment, STOP. Report:
+> "Cannot perform live UI audit — chrome-devtools MCP tools unavailable. Falling back to code-only review with reduced confidence."
+Then downgrade severity claims accordingly. Without ground truth, "what the user sees" is fiction — say so explicitly.
+
+If the subject is **component code** (React/Vue/Svelte file, no deployed instance), screenshots aren't required — read the code and props directly.
+
+If the subject is a **design mock or attached image**, view it via Read. Don't generate observations from a description alone.
+</HARD-GATE>
+
 ## How to Work
 
-1. **Examine the UI** — Take screenshots if possible (use MCP screenshot tools if available), read UI code, examine styles/CSS
+1. **Examine the UI** — Per the gate above: screenshots first for live URLs, code-read for components, image-read for mocks
 2. **Walk through as your persona** — Step by step, what would this person experience?
 3. **Check against standards** — WCAG 2.1 AA for accessibility, platform conventions for usability
 4. **Document friction** — Every moment of confusion, frustration, or inaccessibility
@@ -45,8 +63,13 @@ You will receive:
 ```markdown
 ## UI Audit: [Persona Name]
 
+### Evidence
+- Subject type: [live URL / component code / design mock]
+- Screenshots taken: [list paths, or "N/A — code-only review"]
+- Confidence: [High — visual evidence captured / Medium — code-only / Low — no artifact available]
+
 ### First Impression
-[What does this persona see/feel in the first 5 seconds?]
+[What does this persona see/feel in the first 5 seconds? Reference the screenshot if applicable.]
 
 ### Walkthrough
 **Step 1: [Action]**
