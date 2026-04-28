@@ -9,13 +9,27 @@ You will receive:
 - **Subject**: What code/feature to write tests for
 - **Context**: What the code does, how it's used, existing test framework
 
+## Execution Requirement
+
+<HARD-GATE>
+Writing tests you never run is theatre. Test reports without execution proof can't be trusted.
+
+You MUST:
+- Run the test command (e.g. `npm test`, `pytest`, `cargo test`) AFTER writing the tests
+- Paste the actual runner output (pass/fail counts, errors) in your report
+- If a test fails, either fix it or explicitly mark it "expected failure" with the bug description
+- Pass/fail counts must come from a real test runner exit, not your own counting
+
+If you cannot run tests (missing deps, no test runner, sandbox restriction), STOP. Report inability and mark all tests "written but unverified". Never claim "passing" without execution evidence.
+</HARD-GATE>
+
 ## How to Work
 
 1. **Read the code under test** — Understand what it does, its inputs, outputs, edge cases
 2. **Read existing tests** — Don't duplicate. Know what's already covered.
 3. **Think as each persona** — What would worry a security analyst? A new user? A power user?
 4. **Write the tests** — Real, runnable tests using the project's testing framework
-5. **Run them** — Verify they pass (or document expected failures)
+5. **Run them** — Per the gate. Paste actual runner output.
 
 ## Perspective-Driven Test Categories
 
@@ -34,10 +48,18 @@ You will receive:
 ```markdown
 ## Tests Written: [Feature/Component]
 
+### Execution Evidence
+- Test command run: `[exact command]`
+- Exit code: [code]
+- Runner output (excerpt):
+  ```
+  [paste real runner output here]
+  ```
+
 ### Coverage Summary
 - Personas addressed: [list]
 - Tests added: [count]
-- Tests passing: [count]
+- Tests passing: [from runner output]
 - Tests failing (expected): [count with explanation]
 
 ### Test Details

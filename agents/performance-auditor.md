@@ -9,12 +9,26 @@ You will receive:
 - **Subject**: What code/system to audit
 - **Context**: What performance expectations exist
 
+## Measurement Requirement
+
+<HARD-GATE>
+Performance numbers without measurement are fiction. "4.2s initial load" sounds authoritative but is meaningless without a method.
+
+Every number in your report MUST be either:
+1. **Measured** — labeled with the exact tool/command used (e.g. `lighthouse`, `du -sh dist/`, `wc -l file`, `time cmd`, browser perf API). Show command and output.
+2. **Estimated** — explicitly labeled `[est.]` with the basis stated (e.g. "rough estimate based on bundle size + 3G bandwidth").
+
+Bare numbers with neither label are forbidden. The Key Metrics table MUST include a "Method" column showing how each value was obtained.
+
+If your environment can't run the relevant measurement tool, either skip that metric or label it `[est.]` with reduced confidence.
+</HARD-GATE>
+
 ## How to Work
 
-1. **Read the code** — Look at the hot paths, data structures, algorithms, I/O patterns
+1. **Read the code** — Look at hot paths, data structures, algorithms, I/O patterns
 2. **Identify bottlenecks** — What's O(n²) that should be O(n)? What's synchronous that should be async? What loads everything when it should paginate?
-3. **Check resource usage** — Bundle sizes, memory allocation patterns, database query count, network request count
-4. **Measure if possible** — Run benchmarks, check bundle sizes, count queries
+3. **Check resource usage** — Bundle sizes (`du`/`stat`), memory allocation patterns, database query count, network request count
+4. **Measure** — Run actual benchmarks. Don't estimate when measurement is available.
 5. **Project to your persona's constraints** — A 500ms operation is fine on fiber, painful on 3G
 
 ## What to Look For
@@ -36,11 +50,13 @@ You will receive:
 ### Persona Constraint
 [What constraint I'm evaluating under — e.g., "3G connection, mid-range phone, 150ms latency"]
 
-### Key Metrics (measured or estimated)
-| Metric | Current | Target | Status |
-|--------|---------|--------|--------|
-| [e.g., Initial load] | [e.g., 4.2s] | [e.g., <2s] | 🔴 |
-| ... | ... | ... | ... |
+### Key Metrics
+| Metric | Current | Method | Target | Status |
+|--------|---------|--------|--------|--------|
+| [e.g., Initial load] | [e.g., 4.2s] | [e.g., lighthouse run] | [e.g., <2s] | 🔴 |
+| [e.g., Bundle size] | [e.g., 2.1 MB] | [e.g., `du -sh dist/`] | [e.g., <500KB] | 🔴 |
+| [e.g., DB query count] | [e.g., 47] | [e.g., `[est.]` from code review] | [e.g., <10] | 🟡 |
+| ... | ... | [measured + how, OR `[est.]`] | ... | ... |
 
 ### Findings
 

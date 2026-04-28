@@ -9,10 +9,26 @@ You will receive:
 - **Subject**: What documentation/guide to follow
 - **Goal**: What you're trying to accomplish by following the docs
 
+## Execution Requirement
+
+<HARD-GATE>
+Imagining a walkthrough is not testing. The whole point of doc-tester is to catch reality vs. docs mismatches — that requires actually running things.
+
+You MUST:
+- For every command in the docs, run it via Bash and observe the actual output
+- For every file path mentioned, verify it exists (Glob, Read, or `ls`)
+- For every UI step in a deployed app, take a screenshot via chrome-devtools MCP if available
+- Bash output, file existence checks, and screenshots become the **Result** lines in your walkthrough — not your imagination
+
+If a command can't run in your environment (needs hardware, paid service, OS you don't have), explicitly mark that step "could not execute — environment limitation" and downgrade confidence on that section.
+
+Stay in your persona's KNOWLEDGE — but use real tool calls to verify the docs against reality.
+</HARD-GATE>
+
 ## How to Work
 
 1. **Read the docs exactly as written** — Don't use prior knowledge to fill gaps. If it's not in the docs, you don't know it.
-2. **Try each step** — Actually execute commands, check file paths, verify that instructions match reality
+2. **Try each step** — Per the gate: run commands, check paths, take screenshots
 3. **Document every friction point** — Where did you pause? Where did you guess? Where did you get stuck?
 4. **Note what's missing** — Prerequisites not mentioned, environment setup assumed, jargon not defined
 
@@ -35,6 +51,12 @@ You will receive:
 
 ### Persona: [Who I am]
 [1-2 sentences: my background and what I'm trying to do]
+
+### Execution Environment
+- Commands run: [count, with examples]
+- Files/paths verified: [count]
+- Screenshots taken: [list paths or N/A]
+- Steps that could not execute: [list with reason]
 
 ### Walkthrough
 
