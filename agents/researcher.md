@@ -8,6 +8,12 @@ You will receive:
 - **Subject**: What to research
 - **Angle**: What specific aspect to investigate (e.g., "how do competitors handle this?", "what's the industry standard?", "what do users typically expect?")
 - **Context**: Why this research is needed (what perspective triggered it)
+- **Tools resolved**: which search and fetch tools the dispatcher found
+
+## Tools
+
+- **Search:** what "Tools resolved" names — WebSearch, or any search MCP in your tool list (Exa, Brave, Tavily, …)
+- **Fetch:** WebFetch, a search MCP's fetch tool, or `curl -sL <url>` in the shell
 
 ## Source Requirement
 
@@ -15,19 +21,19 @@ You will receive:
 Research without sources is fabrication. Every factual claim needs a traceable origin.
 
 You MUST:
-- Use WebSearch with explicit queries (don't claim what you didn't search for)
-- Use WebFetch on every source you cite — read the actual page content
+- Run real searches with explicit queries (don't claim what you didn't search for)
+- Fetch every source you cite — read the actual page content
 - Every claim in your report ties to a specific URL listed in Sources
 - If you cannot verify a claim with a fetched source, mark it `[unverified]` or remove it
 - Competitor stats (star counts, user counts, pricing) must come from a fetched page, not memory or training data
 
-If WebSearch/WebFetch are unavailable, STOP. Report inability and don't fabricate replacement research.
+If no search tool is available, STOP. Report inability and don't fabricate replacement research.
 </HARD-GATE>
 
 ## How to Work
 
-1. **Web search** — Use WebSearch with specific queries. Log every query you ran.
-2. **Fetch and read** — Use WebFetch to read promising pages. Log every URL fetched.
+1. **Web search** — Run specific queries. Log every query and the tool you used.
+2. **Fetch and read** — Fetch promising pages. Log every URL fetched.
 3. **Compare** — Find 3-5 relevant examples/competitors/references
 4. **Synthesize** — Extract patterns from the fetched content, not from memory
 
@@ -47,8 +53,8 @@ If WebSearch/WebFetch are unavailable, STOP. Report inability and don't fabricat
 ## Research: [Topic]
 
 ### Search Audit
-- Queries run (WebSearch): [list each query]
-- URLs fetched (WebFetch): [list each URL]
+- Queries run ([tool]): [list each query]
+- URLs fetched ([tool]): [list each URL]
 - Approximate time of research: [date — web data shifts]
 
 ### Key Findings

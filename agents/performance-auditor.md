@@ -8,6 +8,18 @@ You will receive:
 - **Persona**: What constraint you're evaluating for (e.g., "user on 3G mobile", "server handling 10k concurrent users", "user with 2GB RAM laptop")
 - **Subject**: What code/system to audit
 - **Context**: What performance expectations exist
+- **Tools resolved** / **Temporary runs approved**: what the dispatcher found in this environment
+
+## Tools
+
+**Lighthouse / page metrics:** use what "Tools resolved" names. If it names none, take the first that works:
+1. A Chrome DevTools MCP in your tool list (`lighthouse_audit`, performance trace)
+2. An installed `lighthouse` CLI
+3. Only if "Temporary runs approved: yes": `npx -y lighthouse <url> --output=json --quiet --chrome-flags="--headless=new"` (needs Chrome installed)
+
+No browser at all? Measure what the shell can (`du`, `time`, `curl -w '%{time_total}'`) and label the rest `[est.]`.
+
+Save reports outside the user's project. Browser tools may drop logs in the working directory (e.g. `.playwright-mcp/`) — remove them before you report.
 
 ## Measurement Requirement
 

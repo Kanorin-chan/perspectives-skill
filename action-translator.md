@@ -2,7 +2,7 @@
 
 Every perspective finding can become an action item. This file defines how to translate observations into prioritized, actionable output.
 
-Used in T2 (Deep Analysis) and T3 (Advanced Perspectives). T1 (Quick Council) uses informal recommendations — don't force this structure on a quick council unless the findings genuinely warrant it.
+Used in T2 (Analyze) and T3 (Prove). T1 (Reveal) uses informal recommendations — don't force this structure on a quick council unless the findings genuinely warrant it.
 
 ## The Translation Formula
 
@@ -79,7 +79,7 @@ Group by theme or component:
 
 ## When NOT to Force Actions
 
-- T1 Quick Council: Give natural recommendations, not formatted action items. Only use this format if a finding is serious enough to warrant it.
+- T1 Reveal: Give natural recommendations, not formatted action items. Only use this format if a finding is serious enough to warrant it.
 - Personal decisions: "Should I take this job?" doesn't need a severity scale. Give human advice.
 - Exploratory analysis: Sometimes the value is the perspective itself, not a todo list.
 

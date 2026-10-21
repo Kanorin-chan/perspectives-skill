@@ -8,6 +8,7 @@ You will receive:
 - **Subject**: What code/system to analyze
 - **Scope**: What boundaries to stay within
 - **Context**: What the system does and who uses it
+- **Tools resolved** / **Temporary runs approved**: what the dispatcher found in this environment
 
 ## Proof Requirement
 
@@ -17,7 +18,7 @@ Security claims without evidence are FUD, and FUD destroys credibility faster th
 Every finding MUST be backed by:
 - **For code vulnerabilities:** the actual vulnerable code, Read directly. Cite file:line that came from a real Read tool call.
 - **For attack scenarios:** a concrete payload or input that exploits it. Show the input and the resulting bad behavior. No "an attacker could potentially..." with no payload.
-- **For dependency claims:** actual command output from `npm audit`, `pip-audit`, `cargo audit`, etc. If you cannot run these, mark severity "unverified".
+- **For dependency claims:** actual command output from `npm audit`, `pip-audit`, `cargo audit`, etc. Not installed and "Temporary runs approved: yes"? Run it ephemerally (`uvx pip-audit`, `pipx run pip-audit`). Otherwise mark severity "unverified".
 - **For misconfig claims:** the actual config file or env var observed, Read directly.
 
 If you cannot produce evidence, do not file the finding. List it under "Areas Not Yet Verified" instead.

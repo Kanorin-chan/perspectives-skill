@@ -8,6 +8,7 @@ You will receive:
 - **Persona**: Your experience level and background (e.g., "junior dev who knows Python but not this framework", "non-technical user setting up for the first time")
 - **Subject**: What documentation/guide to follow
 - **Goal**: What you're trying to accomplish by following the docs
+- **Tools resolved** / **Temporary runs approved**: what the dispatcher found in this environment
 
 ## Execution Requirement
 
@@ -15,10 +16,12 @@ You will receive:
 Imagining a walkthrough is not testing. The whole point of doc-tester is to catch reality vs. docs mismatches — that requires actually running things.
 
 You MUST:
-- For every command in the docs, run it via Bash and observe the actual output
+- For every command in the docs, run it in the shell and observe the actual output
 - For every file path mentioned, verify it exists (Glob, Read, or `ls`)
-- For every UI step in a deployed app, take a screenshot via chrome-devtools MCP if available
-- Bash output, file existence checks, and screenshots become the **Result** lines in your walkthrough — not your imagination
+- For every UI step in a deployed app, take a screenshot with the browser "Tools resolved" names (if none: a browser MCP in your tool list, else headless Chrome/Edge `--screenshot`)
+- Shell output, file existence checks, and screenshots become the **Result** lines in your walkthrough — not your imagination
+
+Run commands that create files inside a temporary directory, not the user's project. Browser tools may drop logs in the working directory (e.g. `.playwright-mcp/`) — remove them before you report. Never run a step that installs globally, touches credentials, or deletes data — mark it "not executed — would modify the machine".
 
 If a command can't run in your environment (needs hardware, paid service, OS you don't have), explicitly mark that step "could not execute — environment limitation" and downgrade confidence on that section.
 

@@ -8,18 +8,23 @@ You will receive:
 - **Persona**: Who you are evaluating as (e.g., "colorblind user", "mobile user", "first-time user")
 - **Subject**: What UI/interface to evaluate
 - **Context**: What the UI is supposed to help users do
+- **Tools resolved** / **Temporary runs approved**: what the dispatcher found in this environment
 
 ## Ground Truth Requirement
 
 <HARD-GATE>
 If the subject is a **live URL** (deployed app, dev server, any reachable http/https endpoint):
-- You MUST call `mcp__chrome-devtools__navigate_page` to load it
-- You MUST call `mcp__chrome-devtools__take_screenshot` BEFORE writing any "First Impression" or "Walkthrough" content
+- You MUST load it in a browser and take a screenshot BEFORE writing any "First Impression" or "Walkthrough" content
 - You MUST cite the screenshot path/identifier in your report
 - For interactive flows, take screenshots at each step you walk through
 
-If chrome-devtools MCP tools are not available in your environment, STOP. Report:
-> "Cannot perform live UI audit — chrome-devtools MCP tools unavailable. Falling back to code-only review with reduced confidence."
+**Browser:** use what "Tools resolved" names. If it names none, take the first that works:
+1. A browser MCP in your tool list — e.g. Playwright (`browser_navigate`, `browser_take_screenshot`) or Chrome DevTools (`navigate_page`, `take_screenshot`)
+2. An installed Chrome / Edge / Chromium, headless: `<browser> --headless=new --screenshot=<file>.png --window-size=1280,800 <url>` — static screenshot only, no interaction; say so
+3. Only if "Temporary runs approved: yes": `npx -y playwright screenshot <url> <file>.png` (may need `npx -y playwright install chromium` first)
+
+If none works, STOP. Report:
+> "Cannot perform live UI audit — no browser tool available. Falling back to code-only review with reduced confidence."
 Then downgrade severity claims accordingly. Without ground truth, "what the user sees" is fiction — say so explicitly.
 
 If the subject is **component code** (React/Vue/Svelte file, no deployed instance), screenshots aren't required — read the code and props directly.
@@ -98,4 +103,5 @@ If the subject is a **design mock or attached image**, view it via Read. Don't g
 - Reference specific UI elements by name/ID/component when possible
 - If you can take screenshots, annotate them with your findings
 - Practical fixes only — don't suggest redesigning everything
+- Save screenshots outside the user's project. Browser tools may drop logs in the working directory (e.g. `.playwright-mcp/`) — remove them before you report
 - Note what works well too, not just problems

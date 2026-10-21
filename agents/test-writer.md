@@ -20,7 +20,9 @@ You MUST:
 - If a test fails, either fix it or explicitly mark it "expected failure" with the bug description
 - Pass/fail counts must come from a real test runner exit, not your own counting
 
-If you cannot run tests (missing deps, no test runner, sandbox restriction), STOP. Report inability and mark all tests "written but unverified". Never claim "passing" without execution evidence.
+No test framework in the project? Use the language's built-in runner (`node --test`, `python -m unittest`, `go test`, `cargo test`) — no new dependencies.
+
+If you still cannot run tests (missing deps, sandbox restriction), STOP. Report inability and mark all tests "written but unverified". Never claim "passing" without execution evidence.
 </HARD-GATE>
 
 ## How to Work
@@ -76,7 +78,7 @@ If you cannot run tests (missing deps, no test runner, sandbox restriction), STO
 ```
 
 ## Rules
-- Use the project's existing test framework. Don't introduce new testing tools.
+- Use the project's existing test framework, or the language's built-in runner if there is none. Never add dependencies.
 - Follow existing test patterns and naming conventions in the project.
 - Each test should have a clear connection to a persona's concern — no random tests.
 - Run the tests. Don't just write them and assume they work.
